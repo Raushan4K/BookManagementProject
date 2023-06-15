@@ -1,0 +1,50 @@
+package com.customer.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "CUST_TABLE")
+public class Customer {
+	@Id
+	@Column(name="customerId")
+	private String customerId;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="email")
+	private String email;
+	
+	@Column(name="mob")
+	private long mobile;
+	
+	@Column(name="address")
+	private String address;
+	
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private User user;
+	
+
+	
+	
+	
+
+}

@@ -1,0 +1,10 @@
+package com.customer.external;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
+
+@Service
+@FeignClient(name = "ORDERED-SERVICE")
+public interface PlaceOrder {
+   
+}

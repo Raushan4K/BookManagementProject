@@ -1,0 +1,17 @@
+package com.order.service;
+
+import java.awt.print.Book;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Service
+public class OrderedItemService {
+
+	public String placeOrder(@PathVariable String username, List<Long> bookIds) {
+		System.err.println(username + "" + bookIds);
+		return username + "" + bookIds;
+	}
+
+}

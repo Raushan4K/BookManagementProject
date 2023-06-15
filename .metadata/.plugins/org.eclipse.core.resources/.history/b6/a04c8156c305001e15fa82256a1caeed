@@ -1,0 +1,23 @@
+package com.book.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.customer.exception.APIResponse.APIResponseBuilder;
+
+public class GlobalExceptionHandler {
+
+	
+	@ExceptionHandler(ResourceNotFound.class)
+	public ResponseEntity<APIResponse> handlerResourceNotFoundException(ResourceNotFound rf)
+	{
+		String message = rf.getMessage();
+		   com.book.exception.APIResponse.APIResponseBuilder status = APIResponse.builder().message(message).success(true).status(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<APIResponse>(HttpStatus.NOT_FOUND);
+		
+	}
+
+	
+}

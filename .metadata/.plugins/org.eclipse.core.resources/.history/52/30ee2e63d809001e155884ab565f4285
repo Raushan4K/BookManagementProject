@@ -1,0 +1,12 @@
+package com.order.external;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="ORDER-SERVICE")
+public interface OrderService {
+	
+	
+	
+	
+
+}

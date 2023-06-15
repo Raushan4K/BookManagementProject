@@ -1,0 +1,39 @@
+package com.cart.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="BOOK_TABLE")
+public class Books {
+	@Id
+	@Column(name="BOOK_ID")
+	private String bookId;  
+	
+	@Column(name="TITLE",length=30)
+	private String title;
+	
+	@Column(name="AUTHOR",length=25)
+	private String author;
+	
+	@Column(name="PRICE",length=25)
+	private double price;
+	
+	@Column(name="STCK_QTY",length=25)
+	private int stockQuantity;
+	
+	
+	
+
+}

@@ -1,0 +1,11 @@
+package com.customer.exception;
+
+public class ResourceNotFound  extends Exception{
+	
+	public ResourceNotFound()
+	{
+		super("Invalid UserName ...!");
+	}
+	
+
+}

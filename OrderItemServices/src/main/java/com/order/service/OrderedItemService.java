@@ -1,0 +1,41 @@
+package com.order.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.order.external.BookService;
+import com.order.model.Books;
+import com.order.model.Order;
+import com.order.repository.OrderRepo;
+
+@Service
+public class OrderedItemService {
+	@Autowired
+	BookService bookService;
+	@Autowired
+	OrderRepo orderRepo;
+
+	public String placeOrder(@PathVariable String username, List<Long> bookIds) {
+		System.err.println(username + " " + bookIds);
+		Order order = new Order();
+		for (Long bookId : bookIds) {
+			Books bookById = bookService.getBookById(bookId);
+			System.out.println(bookById);
+			order.setAuthor(bookById.getAuthor());
+			order.setId(bookId);
+			order.setTitle(bookById.getTitle());
+			order.setTitle(bookById.getTitle());
+			order.setUsername(username);
+			orderRepo.save(order);
+		}
+
+		
+
+		return username + "" + bookIds;
+
+	}
+
+}

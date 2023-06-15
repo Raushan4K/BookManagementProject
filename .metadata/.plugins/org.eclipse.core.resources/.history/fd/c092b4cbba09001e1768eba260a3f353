@@ -1,0 +1,14 @@
+package com.customer.external;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Service
+@FeignClient(name = "ORDERED-SERVICE")
+public interface PlaceOrder {
+	@GetMapping("/order/placeOrder/{username}")
+	public ResponseEntity<String> placeOrder(@PathVariable(name = "username") String username);
+}

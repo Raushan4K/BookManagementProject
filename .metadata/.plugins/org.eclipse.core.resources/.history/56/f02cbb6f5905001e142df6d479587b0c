@@ -1,0 +1,25 @@
+
+  package com.cart.services;
+  
+  import java.util.List;
+  
+  import com.cart.model.Cart;
+  
+  public interface CartServices {
+  
+  public String addItem(Books book);
+  
+  public List<Cart> getAllItems(Books book);
+  
+  public String removeItem(Books book);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  }
+ 

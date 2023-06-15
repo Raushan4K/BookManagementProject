@@ -1,0 +1,17 @@
+package com.cart.dto;
+
+import java.io.Serializable;
+
+public class Books implements Serializable {
+
+	private String bookId;
+
+	private String title;
+
+	private String author;
+
+	private double price;
+
+	private int stockQuantity;
+
+}

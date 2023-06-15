@@ -1,0 +1,43 @@
+
+package com.cart.services;
+
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cart.dto.Books;
+import com.cart.dto.Customer;
+import com.cart.model.Cart;
+import com.cart.repository.CartRepository;
+
+public class CartServiceImpl implements CartServices {
+
+	@Autowired
+	CartRepository cartRepo;
+
+	@Override
+	public String addItem(Customer customer, Books book) {
+		
+		return null;
+	}
+
+	@Override
+	public List<Cart> getAllItems(Books book) {
+		
+		return null;
+	}
+
+	@Override
+	public Set<Cart> getByUserName(Customer customer) {
+		
+		return null;
+	}
+
+
+	}
+
+	
+
+
+

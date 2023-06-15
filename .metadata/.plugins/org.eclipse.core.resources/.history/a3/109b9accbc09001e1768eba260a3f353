@@ -1,0 +1,15 @@
+package com.order.external;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Service
+@org.springframework.cloud.openfeign.FeignClient(name = "CUSTOMER-SERVICES")
+public interface FeignClient {
+
+	@GetMapping("/cart/addToCart/{username}/bookId/{bookId}")
+	public void addToCart(@PathVariable(name = "username") String username,
+			@PathVariable(name = "bookId") String bookId);
+
+}

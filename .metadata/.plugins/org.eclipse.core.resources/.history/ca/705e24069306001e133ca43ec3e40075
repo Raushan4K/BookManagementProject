@@ -1,0 +1,40 @@
+package com.cart.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cart.dto.Books;
+import com.cart.external.service.BookService;
+import com.cart.model.Cart;
+import com.cart.model.Order;
+
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+	@Autowired
+	BookService bookService;
+
+	@GetMapping("/addToCart/{username}/bookId/{bookId}")
+	public Books addToCart(@PathVariable(name = "username") String username,
+			@PathVariable(name = "bookId") String bookId) {
+		Books book = bookService.getBookById(bookId);
+		Order order = new Order();
+		order.setOrderId(bookId);
+
+		Cart cart = new Cart();
+		cart.setUsername(username);
+		List<Order> orders = cart.getOrder();
+
+		order.setCart(cart);
+		orders.add(order);
+
+		System.out.println(book);
+		return book;
+	}
+
+}

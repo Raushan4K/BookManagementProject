@@ -1,0 +1,37 @@
+package com.customer.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.customer.model.Customer;
+import com.customer.services.ICustomerService;
+
+@RestController
+public class ResgisterController {
+	@Autowired
+	private ICustomerService cs;
+	
+	
+	   @GetMapping("/register")
+	   public String showRegister(Model model)
+	   {
+		   model.addAttribute("customer", new Customer());
+		   return "show-regsiered";
+	   }
+	   
+	   
+	   @PostMapping("/register/customer")
+		public String customerRegistration(@ModelAttribute Customer customer, Model model) {
+			
+			String message =cs.registerCustomer(customer);
+			
+			model.addAttribute("message",message);
+
+			return "register-customer";
+		}
+
+}

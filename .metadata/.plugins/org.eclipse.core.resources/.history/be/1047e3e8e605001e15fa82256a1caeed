@@ -1,0 +1,72 @@
+package com.book.services;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.book.model.Books;
+import com.book.repository.IBookRepository;
+
+@Service
+public class BookServicesImplementation implements IBookService {
+	@Autowired
+	IBookRepository bookRepository;
+
+	@Override
+	public Books saveAllBooks(Books book) {
+
+		String bookId = UUID.randomUUID().toString();
+		book.setBookId(bookId);
+
+		return bookRepository.save(book);
+	}
+
+	@Override
+	public List<Books> getAllBooks() {
+
+		return bookRepository.findAll();
+	}
+
+	@Override
+	public Books getBookById(String bookId) {
+		// get single book details by bookId from db
+		Books book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException());
+
+		return book;
+	}
+
+	@Override
+	public String removeBook(Books book) {
+
+		Optional<Books> book1 = bookRepository.findById(book.getBookId());
+
+		return "Book Deleted Successfully!";
+	}
+
+	@Override
+	public String removeBookById(String bookId) {
+
+		Optional<Books> book2 = bookRepository.findById(bookId);
+
+		return "Book Deleted Successfully from DB";
+	}
+
+	@Override
+	public String updateBook(Books book) {
+
+		return "Record Updated";
+	}
+
+	public Books puchaseBook(String id) {
+
+		Books books = bookRepository.findById(id).get();
+		int stockQuantity = books.getStockQuantity();
+		books.setStockQuantity(--stockQuantity);
+		bookRepository.save(books);
+		return books;
+
+	}
+}

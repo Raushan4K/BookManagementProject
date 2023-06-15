@@ -1,0 +1,39 @@
+package com.cart;
+
+import java.util.Date;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.cart.model.Cart;
+import com.cart.model.Order;
+import com.cart.repository.CartRepository;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class CartServicesApplication {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(CartServicesApplication.class, args);
+
+		CartRepository bean = context.getBean(CartRepository.class);
+		Cart c = new Cart();
+		c.setCreatedDate(new Date());
+		c.setBookId("12");
+		c.setQuantity(4);
+		Order order = new Order();
+
+		order.setId(12);
+		order.setTotalPrice(2343242342.0);
+		order.setCreatedDate(new Date());
+		order.setCart(c);
+		c.setOrder(order);
+		bean.save(c);
+
+	}
+
+}

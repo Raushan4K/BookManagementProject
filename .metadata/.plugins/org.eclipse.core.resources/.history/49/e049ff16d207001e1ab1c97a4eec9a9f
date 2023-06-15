@@ -1,0 +1,40 @@
+package com.cart.model;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "Cart_Table")
+public class Cart {
+	
+	@Id
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")
+	//@Column(name = "cart_id")
+	private String cartId;
+	
+	@OneToOne(mappedBy="cart" ,fetch = FetchType.EAGER,targetEntity = Order.class)
+	private List<Order> order; 
+	
+	private String username;
+
+}

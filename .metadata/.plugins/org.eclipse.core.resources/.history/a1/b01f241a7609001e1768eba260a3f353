@@ -1,0 +1,34 @@
+
+  package com.cart.services;
+  
+  import java.util.List;
+import java.util.Set;
+
+import com.cart.dto.Books;
+import com.cart.dto.Customer;
+import com.cart.model.Cart;
+  
+  public interface CartServices {
+  
+		
+		  public String addItem(Customer customer ,Books book);
+		  
+		  public List<Cart> getAllItems(Books book);
+		  
+		  
+		  
+		  public Set<Cart> getByUserName(Customer customer);
+		 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  }
+ 

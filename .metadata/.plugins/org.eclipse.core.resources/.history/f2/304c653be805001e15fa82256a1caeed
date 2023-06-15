@@ -1,0 +1,31 @@
+package com.book.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+	@ExceptionHandler(ResourceNotFound.class)
+	public ResponseEntity<APIResponse> handlerResourceNotFoundException(ResourceNotFound rf) {
+		String message = rf.getMessage();
+		message = "not available";
+		com.book.exception.APIResponse.APIResponseBuilder status = APIResponse.builder().message(message).success(true)
+				.status(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<APIResponse>(HttpStatus.NOT_FOUND);
+
+	}
+	
+	@ExceptionHandler(ResourceNotFound.class)
+	public ResponseEntity<APIResponse> handleCustomException(ResourceNotFound e) {
+		// Handle the custom exception here
+		// You can customize the response based on the exception
+		String msg = e.getMessage();
+		APIResponse resp =APIResponse.builder().message(msg).success(true).status(HttpStatus.NOT_FOUND).build();
+		return new ResponseEntity<APIResponse>(resp, HttpStatus.NOT_FOUND);
+	}
+
+}

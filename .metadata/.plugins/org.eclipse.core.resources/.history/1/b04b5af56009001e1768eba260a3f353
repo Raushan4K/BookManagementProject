@@ -1,0 +1,17 @@
+server:
+  port: 8083
+  
+spring:
+  application:
+    name: Cart-Service
+  datasource:
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        password: password
+        url: jdbc:oracle:thin:@localhost:1521:xe
+        username: smith
+  jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+      
+   
